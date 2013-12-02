@@ -1,0 +1,42 @@
+<html>
+	<head>
+		<script src="jQuery/jquery-1.10.2.js"></script>
+		<script>
+			$(document).ready(function () {
+				$("#getb").click(function () {
+					$.ajax(
+						{
+							dataType : "json",
+							url : "http://api.worldweatheronline.com/free/v1/weather.ashx?callback=?",
+							data : {
+								num_of_days : 3,
+								key : "jx6a4hxmgej238dw8x4p8vvc",
+								q : $("#place").val(),
+								format : "json"
+							},
+							success : function (forecast) {
+								//alert(forecast.data.current_condition[0].temp_C)
+								$("body").append($("<div/>").html(forecast.data.current_condition[0].temp_C));
+							}
+						}
+					)
+				});
+				$("#resb").click(function () {
+					$("#outputdiv").html("");
+				});
+			});
+		</script>
+	</head>
+	
+	<body>
+		<div id="inputdiv">
+			<input type="text" id="place" placeholder="insert a place"/>
+			<input type="button" id="getb" value="get forecast"/>
+			<input type="button" id="resb" value="clear"/>
+		</div>
+		
+		<div id="outputdiv">
+			aksjhdk ajshd kjahsd kjashd kasjhd kajshd kjasdh kajshdk
+		</div>
+	</body>
+</html>
